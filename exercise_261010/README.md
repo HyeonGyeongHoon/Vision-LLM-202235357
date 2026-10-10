@@ -1,4 +1,4 @@
-# Visual Studio Code 가상 환경 생성
+# Visual Studio Code 가상 환경 생성 및 실행 절차
 0. vscode 좌측 상단 File -> Open Folder에서 원하는 폴더 열기
 1. Visual Studio Code에서 Ctrl + Shift + ~ 눌러 터미널 열기
 2. python3-venv 패키지 설치:
