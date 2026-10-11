@@ -19,10 +19,12 @@ python3 -m venv --system-site-packages .venv
 ```shell
 source .venv/bin/activate
 
-5. 실습 파일 열기
+5. 실습 파일 및 과제 파일 열기
 ```shell
 code exercise.py
 ```
+```shell
+code section_project.py
 또는 New File.. 눌러서 파일 생성
 6. 실습파일 편집
 - VS Code 에디터 창에 코드 붙여넣기 후 Ctrl + S로 저장
