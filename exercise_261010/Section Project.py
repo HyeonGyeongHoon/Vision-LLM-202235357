@@ -41,7 +41,8 @@ print(f"3. 전체 15개 성적 중 85점 이상 개수: {over_85}개", end="\n\n
 
 # 4. 학생별 평균 점수 출력
 student_means = np.mean(raw_scores, axis=1)
-print("4. 학생별 평균 점수: " + ', '.join(f"{name} {mean:.2f}점" for name, mean in zip(student_names, student_means))+'\n')  # 예상 출력: "4. 학생별 평균 점수: 짱구 00점, 철수 00점, 맹구 00점, 유리 00점, 훈이 00점"
+# 예상 출력: "4. 학생별 평균 점수: 짱구 00점, 철수 00점, 맹구 00점, 유리 00점, 훈이 00점"
+print("4. 학생별 평균 점수: " + ', '.join(f"{name} {mean:.2f}점" for name, mean in zip(student_names, student_means))+'\n')  # zip으로 두 데이터를 묶어서 출력
 
 # 5. 평균 점수가 가장 높은 학생 선택
 top_student_idx = student_means.argmax()
@@ -49,8 +50,8 @@ top_student_name = student_names[top_student_idx]
 print(f"5. 최고 평균 수석 학생: {top_student_name} ({student_means[top_student_idx]:.2f}점)\n")  # 예상 출력: "5. 최고 평균 수석 학생: XX (xx.xx점)"
 
 # TODO: 전체 점수 기준, 최고 점수와 과목 그리고 해당 학생 계산 (modulo % 사용 추천)
-overall_max_score = all_scores.max()
-overall_max_idx = all_scores.argmax()
+overall_max_score = all_scores.max()  # 최고 점수 추출
+overall_max_idx = all_scores.argmax()  # 최고 점수의 인덱스 추출
 overall_max_subject = subjects[overall_max_idx % 3]  # 0: 국어, 1: 수학, 2: 과학
 overall_max_student = student_names[overall_max_idx // 3]  # 0: 짱구, 1: 철수, 2: 맹구, 3: 유리, 4: 훈이
 print(f"6. 단일 과목 최고 점수: {overall_max_score}점 (과목: {overall_max_subject}, 학생: {overall_max_student})")  # 예상 출력: "6. 단일 과목 최고 점수: xx점 (과목: XX, 학생: XX)"
