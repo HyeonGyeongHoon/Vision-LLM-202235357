@@ -2,7 +2,7 @@
 
 ## 실행 파일
 - exercise.py: Todo 과제 수행 파일
-- Section Project.py: Section Project 과제 수행 파일
+- section_project.py: Section Project 과제 수행 파일
 
 ## Visual Studio Code 가상 환경 생성 및 실행 절차
 0. vscode 좌측 상단 File -> Open Folder에서 원하는 폴더 열기
@@ -25,6 +25,8 @@ code exercise.py
 ```
 ```shell
 code section_project.py
+```
+
 또는 New File.. 눌러서 파일 생성
 6. 실습파일 편집
 - VS Code 에디터 창에 코드 붙여넣기 후 Ctrl + S로 저장
