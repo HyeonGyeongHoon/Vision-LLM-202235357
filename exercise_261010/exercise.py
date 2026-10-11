@@ -22,9 +22,9 @@ print("합격 점수들:", passed_scores)
 # TODO: 예상 출력 "1번 짱구 학생 (점수: 85점)"
 students = ["짱구", "철수", "맹구"]
 scores = [85, 92, 78]
-for idx, students_arr in enumerate(zip(students,scores),start=1):
-    name, score = students_arr
-    if score >= 80:
+for idx, students_arr in enumerate(zip(students,scores),start=1):  # students와 scores를 하나의 객체로 생성 후 인덱스 생성
+    name, score = students_arr  # 이름과 점수를 언패킹함
+    if score >= 80:  #80점 이상이면 출력
         print(f"{idx}번 {name} 학생 (점수: {score}점)")
 
 scores = np.array([85, 90, 100, 60, 90, 75, 90])

@@ -21,7 +21,7 @@ raw_scores = np.array([
 subjects = ["국어", "수학", "과학"]
 
 # 1. list comprehension을 활용해 raw_students 리스트에서 이름만 추출한 리스트 생성
-student_names = [name[-2:] for name in raw_students]
+student_names = [name[-2:] for name in raw_students]  # raw_students에서 뒤 2글자만 추출
 print("1. 학생 명단: ", end="")
 for idx, name in enumerate(student_names):
     sep = ", " if idx < len(student_names) - 1 else "\n\n"
@@ -29,7 +29,7 @@ for idx, name in enumerate(student_names):
 
 
 # 2. 전산 시스템에 입력된 모든 성적들을 1차원 배열로 출력 (총 15개)
-all_scores = raw_scores.flatten()
+all_scores = raw_scores.flatten()  # flatten 함수 사용
 print("2. 전산 시스템에 입력된 모든 성적: ", end="")
 for idx, score in enumerate(all_scores):
     sep = ", " if idx < len(all_scores) - 1 else "\n\n"
@@ -51,6 +51,6 @@ print(f"5. 최고 평균 수석 학생: {top_student_name} ({student_means[top_s
 # TODO: 전체 점수 기준, 최고 점수와 과목 그리고 해당 학생 계산 (modulo % 사용 추천)
 overall_max_score = all_scores.max()
 overall_max_idx = all_scores.argmax()
-overall_max_subject = subjects[overall_max_idx % 3]
-overall_max_student = student_names[overall_max_idx // 3]
+overall_max_subject = subjects[overall_max_idx % 3]  # 0: 국어, 1: 수학, 2: 과학
+overall_max_student = student_names[overall_max_idx // 3]  # 0: 짱구, 1: 철수, 2: 맹구, 3: 유리, 4: 훈이
 print(f"6. 단일 과목 최고 점수: {overall_max_score}점 (과목: {overall_max_subject}, 학생: {overall_max_student})")  # 예상 출력: "6. 단일 과목 최고 점수: xx점 (과목: XX, 학생: XX)"
