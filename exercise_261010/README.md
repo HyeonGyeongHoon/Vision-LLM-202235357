@@ -18,25 +18,13 @@ python3 -m venv --system-site-packages .venv
 4. 가상 환경 활성화:
 ```shell
 source .venv/bin/activate
-```
-5. pip 업그레이드:
-```shell
-python -m pip install --upgrade pip
-```
-6. Python 인터프리터 설정
-- ctrl + shift + p 누른 뒤 Python: Select Interpreter 입력/선택
-- 목록에서 ('.venv': venv) 선택
 
-7. 실습 폴더 생성 및 이동
-```shell
-mkdir -p exercise
-cd exercise
-```
-8. 실습 파일 열기
+5. 실습 파일 열기
 ```shell
 code exercise.py
 ```
-9. 실습파일 편집
+또는 New File.. 눌러서 파일 생성
+6. 실습파일 편집
 - VS Code 에디터 창에 코드 붙여넣기 후 Ctrl + S로 저장
-10. 파이썬 파일 실행
+7. 파이썬 파일 실행
 - 에디터 우측 상단의 재생 버튼 클릭
