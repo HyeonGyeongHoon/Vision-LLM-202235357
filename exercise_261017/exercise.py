@@ -34,9 +34,7 @@ def mophological_operation(mask):
     return ball_mask_closed
 
 
-def get_contours(final_mask):
-    final_ball_mask = final_mask
-
+def get_contours(final_ball_mask):
     # 컨투어 추출 (두 번째 반환값인 hierarchy는 바깥쪽 테두리만 검출하는 현재 방식상 무의미하기에 저장하지 않음)
     contours, _ = cv2.findContours(
         final_ball_mask,          # binary mask
@@ -71,15 +69,16 @@ def draw_ball_contours(rgb_image, final_mask, contours):
     # Contour를 그릴 원본 이미지 copy
     final_img = rgb_image.copy()
 
+    ball_contour = None  # 공의 외곽선 미검출 시 안전하게 반환
     if len(contours) > 0:
         # 가장 큰 contour
-        largest_contour = max(contours, key=cv2.contourArea)
+        ball_contour = max(contours, key=cv2.contourArea)
 
         # 가장 큰 contour만 채운 binary mask 생성
-        final_mask = np.zeros_like(final_mask)
+        ball_mask = np.zeros_like(final_mask)
         cv2.drawContours(
-            final_mask,
-            [largest_contour],
+            ball_mask,
+            [ball_contour],
             -1,
             255,
             thickness=cv2.FILLED
@@ -87,17 +86,19 @@ def draw_ball_contours(rgb_image, final_mask, contours):
 
         # 가장 큰 contour만 채운 binary mask를 반투명 초록색으로 overlay
         mask_color = np.zeros_like(final_img)
-        mask_color[:, :, 1] = final_mask
+        mask_color[:, :, 1] = ball_mask
         alpha = 0.35
         final_img = cv2.addWeighted(final_img, 1.0, mask_color, alpha, 0)
 
         # Contour 그리기 (초록색 외곽선)
-        cv2.drawContours(final_img, [largest_contour], -1, (0, 255, 0), 2)
+        cv2.drawContours(final_img, [ball_contour], -1, (0, 255, 0), 2)
 
     plt.imshow(final_img)
     plt.title("Final Basketball Section & Contour")
     plt.axis("off")
     plt.show()
+
+    return ball_contour
 
 
 ball_image = load_rgb_image()
