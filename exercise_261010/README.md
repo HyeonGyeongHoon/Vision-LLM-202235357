@@ -18,6 +18,7 @@ python3 -m venv --system-site-packages .venv
 4. 가상 환경 활성화:
 ```shell
 source .venv/bin/activate
+```
 
 5. 실습 파일 및 과제 파일 열기
 ```shell
@@ -26,8 +27,7 @@ code exercise.py
 ```shell
 code section_project.py
 ```
-
-또는 New File.. 눌러서 파일 생성
+- 또는 New File.. 눌러서 파일 생성
 6. 실습파일 편집
 - VS Code 에디터 창에 코드 붙여넣기 후 Ctrl + S로 저장
 7. 파이썬 파일 실행
