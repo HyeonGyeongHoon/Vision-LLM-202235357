@@ -4,12 +4,14 @@ import numpy as np
 
 
 def load_rgb_image():
+    """이미지 파일을 읽어와 RGB 배열로 변환"""
     basketball = cv2.imread('../src/images/basketball_crop.jpg')
     basketball_rgb = cv2.cvtColor(basketball, cv2.COLOR_BGR2RGB)
     return basketball_rgb
 
 
 def do_clahe(ball_image):
+    """LAB색공간에서 L 채널만 따로 추출한 뒤 CLAHE를 적용하고 색상 범위 지정 후 마스크 생성 및 반환"""
     lower_basketball_lab = np.array([70, 130, 70])
     upper_basketball_lab = np.array([180, 230, 185])
 
@@ -26,6 +28,7 @@ def do_clahe(ball_image):
 
 
 def mophological_operation(mask):
+    """모폴로지 열림 연산(3회), 닫힘 연산(1회)를 적용하여 마스크의 노이즈 제거"""
     kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
 
     ball_mask_opened = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel, iterations=3)
@@ -35,6 +38,7 @@ def mophological_operation(mask):
 
 
 def get_contours(final_ball_mask):
+    """노이즈가 제거된 이진 마스크에서 외곽선 좌표를 추출"""
     # 컨투어 추출 (두 번째 반환값인 hierarchy는 바깥쪽 테두리만 검출하는 현재 방식상 무의미하기에 저장하지 않음)
     contours, _ = cv2.findContours(
         final_ball_mask,          # binary mask
@@ -46,6 +50,7 @@ def get_contours(final_ball_mask):
 
 
 def draw_contours(rgb_image, final_mask, contours):
+    """추출된 모든 외곽선을 이미지 위에 그리기"""
     # Contour를 그릴 원본 이미지 copy
     final_img = rgb_image.copy()
 
@@ -66,6 +71,7 @@ def draw_contours(rgb_image, final_mask, contours):
 
 
 def draw_ball_contours(rgb_image, final_mask, contours):
+    """가장 큰 외곽선을 찾아내어 농구공 영역을 시각화하고 그 영역의 외곽선을 반환"""
     # Contour를 그릴 원본 이미지 copy
     final_img = rgb_image.copy()
 
