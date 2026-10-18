@@ -107,9 +107,11 @@ def draw_ball_contours(rgb_image, final_mask, contours):
     return ball_contour
 
 
-ball_image = load_rgb_image()
-enhanced_mask = do_clahe(ball_image)
+ball_image = load_rgb_image()  # 농구공 이미지 불러오기
+
+enhanced_mask = do_clahe(ball_image)  # CLAHE 이미지 강화
 final_mask = mophological_operation(enhanced_mask)  # Morphological operation을 적용하여 최종 binary mask 생성
-ball_image_contours = get_contours(final_mask)
+
+ball_image_contours = get_contours(final_mask)  # 농구공 이미지에서 외곽선 찾고 그리기
 draw_contours(ball_image, final_mask, ball_image_contours)  # Binary mask로 외곽선 검출
 draw_ball_contours(ball_image, final_mask, ball_image_contours)  # 최종 농구공 영역 및 외곽선 선택
