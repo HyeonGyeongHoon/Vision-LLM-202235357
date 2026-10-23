@@ -9,7 +9,7 @@ from mediapipe.tasks.python import vision
 LOWER_COLOR_BOUND = np.array([20, 120, 20], dtype=np.uint8)
 UPPER_COLOR_BOUND = np.array([200, 170, 110], dtype=np.uint8)
 
-MIN_CONTOUR_AREA = 100  # 칫솔만 검출하기 위한 최소 외곽선 면적 (픽셀 단위)
+MIN_CONTOUR_AREA = 150  # 칫솔만 검출하기 위한 최소 외곽선 면적 (픽셀 단위)
 
 # Kalman Filter 상태/측정 차원
 STATE_DIM = 4  # [x, y, vx, vy]^T
