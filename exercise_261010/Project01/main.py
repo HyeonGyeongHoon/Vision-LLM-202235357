@@ -159,6 +159,18 @@ def is_point_inside_rect(point, rect):
 
 # 메인 함수 시작
 def main():
+    # pipeline 정의
+    pipeline = (
+        "v4l2src device=/dev/video0 ! "
+        "video/x-raw,format=YUY2,width=640,height=480,framerate=30/1 ! "
+        "videoconvert ! video/x-raw,format=BGR ! "
+        "queue leaky=downstream max-size-buffers=1 "
+        "max-size-bytes=0 max-size-time=0 ! "
+        "appsink drop=true max-buffers=1 sync=false"
+    )
+
+    cap = cv2.VideoCapture(pipeline, cv2.CAP_GSTREAMER)
+
     cap = cv2.VideoCapture(0)
     # 얼굴 인식 모델 불러오기
     detector = init_mediapipe_face_detector(model_path="../src/models/MediaPipe/detector.tflite")
