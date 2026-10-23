@@ -34,10 +34,11 @@ def do_clahe(frame_bgr):
     return mask
 
 def mophological_operation(mask):
-    """모폴로지 열림(3회) 및 닫힘(1회) 연산으로 잡음 정제 및 최종 마스크 반환"""
-    kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
-    mask_opened = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel, iterations=3)
-    mask_closed = cv2.morphologyEx(mask_opened, cv2.MORPH_CLOSE, kernel)
+    """모폴로지 열림(1회) 및 닫힘(2회) 연산으로 잡음 정제 및 최종 마스크 반환"""
+    kernel_open = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
+    kernel_close = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (9, 9))
+    mask_opened = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel_open, iterations=1)
+    mask_closed = cv2.morphologyEx(mask_opened, cv2.MORPH_CLOSE, kernel_close, iterations=2)
     return mask_closed
 
 def get_contours(final_mask):
