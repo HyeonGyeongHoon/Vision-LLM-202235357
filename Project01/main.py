@@ -23,6 +23,7 @@ MIN_BRUSH_SPEED = 2.0  # 유효 양치 동작 최소 속력 (픽셀/프레임)
 # 1. 파란색 칫솔 영역 검출
 def do_clahe(frame_bgr):
     """LAB 색공간 변환 및 L채널 CLAHE 적용 후 이진 마스크 생성 및 반환"""
+    # frame_bgr = cv2.GaussianBlur(frame_bgr, (3, 3), 0)  # 노이즈가 극심할 때 적용
     frame_lab = cv2.cvtColor(frame_bgr, cv2.COLOR_BGR2LAB)
     channel_l, a, b = cv2.split(frame_lab)
 
