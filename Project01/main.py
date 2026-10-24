@@ -161,13 +161,25 @@ def is_point_inside_rect(point, rect):
 
 # 메인 함수 시작
 def main():
-    # pipeline 정의
+    # # pipeline 정의 - USB 카메라
+    # pipeline = (
+    #     "v4l2src device=/dev/video0 ! "
+    #     "video/x-raw,format=YUY2,width=640,height=480,framerate=30/1 ! "
+    #     "videoconvert ! video/x-raw,format=BGR ! "
+    #     "queue leaky=downstream max-size-buffers=1 "
+    #     "max-size-bytes=0 max-size-time=0 ! "
+    #     "appsink drop=true max-buffers=1 sync=false"
+    # )
+
+    # pipeline 정의 - CSI 카메라
     pipeline = (
-        "v4l2src device=/dev/video0 ! "
-        "video/x-raw,format=YUY2,width=640,height=480,framerate=30/1 ! "
-        "videoconvert ! video/x-raw,format=BGR ! "
-        "queue leaky=downstream max-size-buffers=1 "
-        "max-size-bytes=0 max-size-time=0 ! "
+        "nvarguscamerasrc sensor-id=0 ! "
+        "video/x-raw(memory:NVMM), width=1280, height=720, framerate=30/1 ! "
+        "nvvidconv ! "
+        "video/x-raw, format=BGRx ! "
+        "videoconvert ! "
+        "video/x-raw, format=BGR ! "
+        "queue leaky=downstream max-size-buffers=1 ! "
         "appsink drop=true max-buffers=1 sync=false"
     )
 
