@@ -172,8 +172,7 @@ def main():
     )
 
     cap = cv2.VideoCapture(pipeline, cv2.CAP_GSTREAMER)
-
-    cap = cv2.VideoCapture(0)
+    
     # 얼굴 인식 모델 불러오기
     detector = init_mediapipe_face_detector(model_path="../src/models/MediaPipe/detector.tflite")
     # Kalman Filter 초기화
