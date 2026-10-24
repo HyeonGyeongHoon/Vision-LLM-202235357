@@ -24,6 +24,8 @@
    - 판정 조건: 추적 좌표가 Mouth Zone 내부에 위치하며, 산출된 이동 속력(`speed`)이 기준값(2.0 px/frame) 이상일 때만 유효 양치 동작으로 인식
    - 시스템 연산 부하에 따른 FPS 변동 시에도 실제 시간이 일정하게 줄어들도록 `time.time()` 기반의 Delta-Time(경과 시간) 차감 방식 적용 (목표 시간: 180초)
 
+<br>
+
 ## 실행 파일
 - main.py: 프로젝트 실행 파일
 
@@ -57,6 +59,23 @@ code main.py
 
 <br>
 
+## 개발 및 실행 환경 (Dependencies)
+- 하드웨어: NVIDIA Jetson (JetPack 환경, YUYV 지원 USB 카메라 모듈)
+- 설치 라이브러리:
+  - `mediapipe` (MediaPipe Tasks Python API)
+```bash
+pip install --no-deps mediapipe
+pip install absl-py flatbuffers sounddevice
+```
+- **사전 준비 모델 파일**:
+  - `detector.tflite` (MediaPipe BlazeFace Short Range 모델)
+  - 저장 경로: `src/models/MediaPipe/detector.tflite`
+```bash
+wget -O src/models/MediaPipe/detector.tflite https://storage.googleapis.com/mediapipe-models/face_detector/blaze_face_short_range/float16/1/blaze_face_short_range.tflite
+```
+
+<br>
+
 ## 기타 참조 사항
 ### 1. 주요 하이퍼파라미터 설정 근거
 #### 1) 전처리 및 색상 검출
@@ -79,11 +98,9 @@ code main.py
 #### 3) 동작 판정 기준
 - 최소 유효 속력 **(MIN_BRUSH_SPEED = 2.0 px/frame)** : 일반적으로 양치를 한다고 시뮬레이션 해보았을 때 적정값
 
-
-
 <br>
 
-### AI 사용
+## AI 사용
 - 코드 구조 정제 및 문법 검사에 AI 사용
 - 모폴로지 연산 하이퍼파라미터를 실시간으로 마우스 슬라이더로 조절하면서 테스트하기 위한 코드 작성에 사용
 - 연필 색상 임계값 : 분석 조명 반사와 원통형 음영을 수용하기 위한 권장 LAB 색상 범위 도출
