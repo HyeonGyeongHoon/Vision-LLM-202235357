@@ -1,7 +1,8 @@
 # 261025 과제 제출
 
 ## 실행 파일
-- main.py: 이미지 잔상 효과 구현 코드
+- gpu_acceleration1.py: 이미지 잔상 효과 구현 코드
+- gpu_acceleration2.py: 컨볼루션 연산 구현 코드
 
 <br>
 
@@ -23,7 +24,7 @@ source .venv/bin/activate
 
 5. 실습 파일 및 과제 파일 열기
 ```shell
-code main.py
+code [파일이름].py
 ```
 - 또는 New File.. 눌러서 파일 생성
 6. 실습파일 편집
