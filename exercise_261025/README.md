@@ -5,6 +5,7 @@
 - gpu_acceleration2.py: 컨볼루션 연산 구현 코드
 - learning_image_classifier.py: CIFAR-10 데이터셋 모델 학습 구현 코드
 - bounding_box.py: IoU, NMS 구현 코드
+- mnist_learning.py: main_gpu() 함수를 추가한 mnist 학습 구현 코드
 
 <br>
 
