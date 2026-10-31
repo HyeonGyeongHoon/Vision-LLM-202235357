@@ -3,6 +3,7 @@
 ## 실행 파일
 - gpu_acceleration1.py: 이미지 잔상 효과 구현 코드
 - gpu_acceleration2.py: 컨볼루션 연산 구현 코드
+- learning_image_classifier.py: CIFAR-10 데이터셋 모델 학습 구현 코드
 
 <br>
 
