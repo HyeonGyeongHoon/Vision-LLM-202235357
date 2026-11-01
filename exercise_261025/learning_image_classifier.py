@@ -410,7 +410,7 @@ def save_model(model, optimizer, test_accuracy_history) :
 
     torch.save(
         save_data,
-        "src/models/CIFAR10/CIFAR10_CNN.pth",
+        "../src/models/CIFAR10/CIFAR10_CNN.pth",
     )
 
 def main():
@@ -441,13 +441,13 @@ def main():
     )
 
     # 6. GPU 웜업
-    gpu_warm_up()
+    gpu_warm_up(device, model)
 
     # 7. CNN 모델 학습
     _, _, _, test_accuracy_history = learning_model(model, train_loader, criterion, optimizer, device, test_loader)
 
     # 8. 모델 저장
     save_model(model, optimizer, test_accuracy_history)
-2
+
 if __name__ == "__main__":
     main()
