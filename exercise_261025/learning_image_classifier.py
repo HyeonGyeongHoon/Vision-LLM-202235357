@@ -62,14 +62,14 @@ def preprocessing_data():
 # CIFAR-10 데이터셋 설치 및 불러오기
 def load_cifar_10_datasets(train_transform, test_transform ):
     train_dataset = datasets.CIFAR10(
-        root="src/datasets",
+        root="../src/datasets",
         train=True,
         transform=train_transform,
         download=True,
     )
 
     test_dataset = datasets.CIFAR10(
-        root="src/datasets",
+        root="../src/datasets",
         train=False,
         transform=test_transform,
         download=True,
