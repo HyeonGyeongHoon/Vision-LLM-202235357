@@ -190,9 +190,9 @@ def main():
 
     # 5. 이미지 출력
     plt.figure(figsize=(16,10))
-    plt.subplot(1,2,1), plt.imshow(hubble_nms)
+    plt.subplot(1,2,1), plt.imshow(hubble)
     plt.title("Original BBox")
-    plt.subplot(1,2,2), plt.imshow(hubble)
+    plt.subplot(1,2,2), plt.imshow(hubble_nms)
     plt.title("Custom NMS Result")
 
     for ax in plt.gcf().axes:
