@@ -34,6 +34,10 @@
 - main.py: 메인 통합 파이프라인 실행 파일
 - test_llm.py: 실제 카메라/마이크 입력 없이 시나리오별 소품 상태 데이터를 주입하여 Gemma LLM 대화 응답 생성을 독립적으로 검증하는 테스트 스크립트 파일
 
+## 추가 자료
+
+- Final_Project_deck.pdf : 프로젝트 발표 자료
+
 <br>
 
 ## Visual Studio Code 가상 환경 생성 및 실행 절차
