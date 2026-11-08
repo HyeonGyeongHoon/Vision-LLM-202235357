@@ -37,6 +37,7 @@
 ## 추가 자료
 
 - Final_Project_deck.pdf : 프로젝트 발표 자료
+- Final_Project_demo_video.mp4 : 프로젝트 시연 영상(수업 중 촬영한 영상으로 스피커 볼륨을 작게하여 출력했습니다.)
 
 <br>
 
