@@ -6,19 +6,19 @@ from ultralytics import YOLO
 from llama_cpp import Llama
 
 # 파일 경로 및 환경 설정
-YOLO_MODEL_PATH = "src/models/YOLO/yolo11n_int8.engine"  # int8 양자화 엔진
+YOLO_MODEL_PATH = "../src/models/YOLO/yolo11n_int8.engine"  # int8 양자화 엔진
 
-GEMMA_MODEL_PATH = "src/models/Gemma4/google_gemma-4-E2B-it-Q4_K_M.gguf"  # Gemma local llm 호출
+GEMMA_MODEL_PATH = "../src/models/Gemma4/google_gemma-4-E2B-it-Q4_K_M.gguf"  # Gemma local llm 호출
 
-WHISPER_CLI = "whisper.cpp/build-cpu/bin/whisper-cli"  # STT
-WHISPER_MODEL = "whisper.cpp/models/ggml-base.bin"
+WHISPER_CLI = "../whisper.cpp/build-cpu/bin/whisper-cli"  # STT
+WHISPER_MODEL = "../whisper.cpp/models/ggml-base.bin"
 
-PIPER_PYTHON = ".piper_venv/bin/python"  # TTS
-PIPER_MODEL = "src/models/Piper/ko_KR-kss-medium.onnx"
+PIPER_PYTHON = "../.piper_venv/bin/python"  # TTS
+PIPER_MODEL = "../src/models/Piper/ko_KR-kss-medium.onnx"
 
-AUDIO_INPUT_PATH = "src/audio/input.wav"
-AUDIO_OUTPUT_PATH = "src/audio/response.wav"
-MIC_DEVICE = "plughw:2,0"
+AUDIO_INPUT_PATH = "../src/audio/input.wav"
+AUDIO_OUTPUT_PATH = "../src/audio/response.wav"
+MIC_DEVICE = "plughw:3,0"
 
 PATTERN1_CLASSES = [24, 25, 26, 27, 28, 39, 41]
 # "24": "backpack", "25": "umbrella", "26": "handbag", "27": "tie", "28": "suitcase", "39": "bottle", "41": "cup"
@@ -189,7 +189,17 @@ def generate_boyfriend_reply(intent, current_items=None, added=None, removed=Non
 
 # 메인 실행 루프
 def main():
-    cap = cv2.VideoCapture(0)
+    # pipeline 정의
+    pipeline = (
+        "v4l2src device=/dev/video0 ! "
+        "video/x-raw,format=YUY2,width=640,height=480,framerate=30/1 ! "
+        "videoconvert ! video/x-raw,format=BGR ! "
+        "queue leaky=downstream max-size-buffers=1 "
+        "max-size-bytes=0 max-size-time=0 ! "
+        "appsink drop=true max-buffers=1 sync=false"
+    )
+
+    cap = cv2.VideoCapture(pipeline, cv2.CAP_GSTREAMER)
     if not cap.isOpened():
         print("Error: Unable to open camera.")
         return
